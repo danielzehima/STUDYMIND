@@ -1,0 +1,84 @@
+"use client";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import {
+  LayoutDashboard,
+  FileText,
+  History,
+  CreditCard,
+  X,
+} from "lucide-react";
+
+const LINKS = [
+  { href: "/dashboard", label: "Tableau de bord", icon: LayoutDashboard },
+  { href: "/documents", label: "Mes documents", icon: FileText },
+  { href: "/history", label: "Historique", icon: History },
+  { href: "/subscription", label: "Abonnement", icon: CreditCard },
+];
+
+export function Sidebar({
+  open,
+  onClose,
+}: {
+  open: boolean;
+  onClose: () => void;
+}) {
+  const pathname = usePathname();
+
+  return (
+    <>
+      {open && (
+        <div
+          className="fixed inset-0 z-40 bg-slate-900/40 lg:hidden"
+          onClick={onClose}
+          aria-hidden="true"
+        />
+      )}
+
+      <aside
+        className={`fixed inset-y-0 left-0 z-50 flex w-64 flex-col border-r border-slate-200 bg-white transition-transform duration-200 lg:static lg:translate-x-0 ${
+          open ? "translate-x-0" : "-translate-x-full"
+        }`}
+      >
+        <div className="flex items-center justify-between px-6 py-5">
+          <Link
+            href="/dashboard"
+            className="text-lg font-bold tracking-tight text-slate-900"
+          >
+            Révision<span className="text-indigo-600">IA</span>
+          </Link>
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="Fermer le menu"
+            className="text-slate-500 lg:hidden"
+          >
+            <X size={20} />
+          </button>
+        </div>
+
+        <nav className="flex flex-1 flex-col gap-1 px-3">
+          {LINKS.map((link) => {
+            const active = pathname === link.href;
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={onClose}
+                className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition ${
+                  active
+                    ? "bg-indigo-50 text-indigo-600"
+                    : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+                }`}
+              >
+                <link.icon size={18} />
+                {link.label}
+              </Link>
+            );
+          })}
+        </nav>
+      </aside>
+    </>
+  );
+}
