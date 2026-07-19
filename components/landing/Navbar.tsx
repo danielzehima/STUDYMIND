@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
+import { Logo } from "@/components/ui/Logo";
 
 const NAV_LINKS = [
   { href: "#fonctionnalites", label: "Fonctionnalités" },
@@ -15,11 +16,11 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/80 backdrop-blur-md">
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <Link
-          href="/"
-          className="text-lg font-bold tracking-tight text-slate-900"
-        >
-          Révision<span className="text-indigo-600">IA</span>
+        <Link href="/" className="flex items-center gap-2">
+          <Logo size={32} />
+          <span className="text-lg font-bold tracking-tight text-slate-900">
+            Study Mind
+          </span>
         </Link>
 
         <div className="hidden items-center gap-8 md:flex">

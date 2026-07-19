@@ -9,6 +9,7 @@ import {
   CreditCard,
   X,
 } from "lucide-react";
+import { Logo } from "@/components/ui/Logo";
 
 const LINKS = [
   { href: "/dashboard", label: "Tableau de bord", icon: LayoutDashboard },
@@ -42,11 +43,11 @@ export function Sidebar({
         }`}
       >
         <div className="flex items-center justify-between px-6 py-5">
-          <Link
-            href="/dashboard"
-            className="text-lg font-bold tracking-tight text-slate-900"
-          >
-            Révision<span className="text-indigo-600">IA</span>
+          <Link href="/dashboard" className="flex items-center gap-2">
+            <Logo size={28} />
+            <span className="text-lg font-bold tracking-tight text-slate-900">
+              Study Mind
+            </span>
           </Link>
           <button
             type="button"

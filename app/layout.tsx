@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Révision Intelligente",
+  title: "Study Mind",
   description: "Plateforme de révision assistée par IA pour étudiants",
 };
 
