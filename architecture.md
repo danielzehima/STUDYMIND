@@ -489,6 +489,8 @@ faisant confiance à un score envoyé par le client.
 
 ### 3.4 Résolution d'exercices (Pro)
 
+**Mise à jour :** implémenté sur le même modèle que le quiz (§3.3) — un seul appel DeepSeek synchrone dans `POST /api/documents/[id]/exercises`, pas de polling. `exercise_resolutions.status` sert de trace en cas d'échec plutôt que de mécanisme d'état intermédiaire observable côté client. Accessible depuis la page détail d'un document (`/documents/[id]/exercises`), gating Pro appliqué à la fois côté route (`requirePlan('pro')`) et côté page (bannière d'upsell pour les comptes Free).
+
 | Route | Auth | Plan | Requête | Réponse | Erreurs |
 |---|---|---|---|---|---|
 | `POST /api/documents/[id]/exercises` | oui | **`requirePlan('pro')`** | — | `{resolution_id, status}` puis `{items:[{id, order_index, exercise_text, solution_text, final_answer, confidence}]}` | 404 (document), 403 `PLAN_REQUIRED`, 422 `EXTRACTION_FAILED`, 502 `DEEPSEEK_INVALID_RESPONSE` |

@@ -1,9 +1,10 @@
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
-import { ListChecks } from "lucide-react";
+import { ListChecks, Lock, PenTool } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
 import { getDocument } from "@/lib/documents/repository";
 import { listQuizzesForDocument } from "@/lib/quizzes/repository";
+import { getSubscription } from "@/lib/subscriptions/repository";
 import { StatusBadge } from "@/components/documents/StatusBadge";
 import { DeleteDocumentButton } from "@/components/documents/DeleteDocumentButton";
 import { GenerateAnalysisButton } from "@/components/documents/GenerateAnalysisButton";
@@ -37,6 +38,9 @@ export default async function DocumentDetailPage({
 
   const quizzes =
     document.status === "ready" ? await listQuizzesForDocument(user.id, id) : [];
+
+  const subscription = await getSubscription(user.id);
+  const isPro = subscription.plan === "pro";
 
   return (
     <div className="flex flex-col gap-6">
@@ -125,6 +129,23 @@ export default async function DocumentDetailPage({
           label="Générer un nouveau quiz"
         />
       )}
+
+      <Link
+        href={`/documents/${id}/exercises`}
+        className="flex items-center justify-between rounded-2xl border border-slate-200 bg-white p-6 transition hover:border-indigo-300 hover:bg-indigo-50"
+      >
+        <span className="flex items-center gap-2 text-sm font-semibold text-slate-900">
+          <PenTool size={16} className="text-indigo-600" />
+          Résolution d&apos;exercices
+          {!isPro && (
+            <span className="inline-flex items-center gap-1 rounded-full bg-indigo-100 px-2 py-0.5 text-xs font-medium text-indigo-600">
+              <Lock size={10} />
+              Pro
+            </span>
+          )}
+        </span>
+        <span className="text-indigo-600">Ouvrir →</span>
+      </Link>
 
       <div className="rounded-2xl border border-slate-200 bg-white p-6">
         <h2 className="text-sm font-semibold text-slate-900">
