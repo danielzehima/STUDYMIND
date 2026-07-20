@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
-import { ListChecks, Lock, PenTool } from "lucide-react";
+import { Download, ListChecks, Lock, PenTool } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
 import { getDocument } from "@/lib/documents/repository";
 import { listQuizzesForDocument } from "@/lib/quizzes/repository";
@@ -57,6 +57,15 @@ export default async function DocumentDetailPage({
       </div>
 
       <div className="flex items-center gap-3">
+        {document.status === "ready" && (
+          <a
+            href={`/api/documents/${id}/export`}
+            className="inline-flex items-center gap-2 rounded-full border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
+          >
+            <Download size={16} />
+            Télécharger la fiche (PDF)
+          </a>
+        )}
         <DeleteDocumentButton documentId={document.id} />
       </div>
 

@@ -9,6 +9,8 @@ export type AdminStats = {
   quizAttemptsCount: number;
   exercisesResolvedCount: number;
   estimatedMrrFcfa: number;
+  feedbackCount: number;
+  averageRating: number | null;
 };
 
 // Prix Pro confirmé (architecture.md §4.2) — sert uniquement à estimer le
@@ -24,6 +26,7 @@ export async function getAdminStats(): Promise<AdminStats> {
     { count: documentsCount },
     { count: quizAttemptsCount },
     { count: exercisesResolvedCount },
+    { data: ratedFeedback, count: feedbackCount },
   ] = await Promise.all([
     supabase.from("profiles").select("id", { count: "exact", head: true }),
     supabase
@@ -35,10 +38,19 @@ export async function getAdminStats(): Promise<AdminStats> {
     supabase
       .from("exercise_items")
       .select("id", { count: "exact", head: true }),
+    supabase.from("feedback").select("rating", { count: "exact" }),
   ]);
 
   const total = totalUsers ?? 0;
   const pro = proUsers ?? 0;
+
+  const ratings = (ratedFeedback ?? [])
+    .map((f) => f.rating)
+    .filter((r): r is number => typeof r === "number");
+  const averageRating =
+    ratings.length > 0
+      ? Math.round((ratings.reduce((sum, r) => sum + r, 0) / ratings.length) * 10) / 10
+      : null;
 
   return {
     totalUsers: total,
@@ -48,5 +60,7 @@ export async function getAdminStats(): Promise<AdminStats> {
     quizAttemptsCount: quizAttemptsCount ?? 0,
     exercisesResolvedCount: exercisesResolvedCount ?? 0,
     estimatedMrrFcfa: pro * PRO_PRICE_FCFA,
+    feedbackCount: feedbackCount ?? 0,
+    averageRating,
   };
 }

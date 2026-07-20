@@ -7,6 +7,7 @@ import {
   FileText,
   History,
   CreditCard,
+  MessageSquare,
   ShieldCheck,
   X,
 } from "lucide-react";
@@ -17,6 +18,7 @@ const LINKS = [
   { href: "/documents", label: "Mes documents", icon: FileText },
   { href: "/history", label: "Historique", icon: History },
   { href: "/subscription", label: "Abonnement", icon: CreditCard },
+  { href: "/feedback", label: "Feedback", icon: MessageSquare },
 ];
 
 const ADMIN_LINK = {

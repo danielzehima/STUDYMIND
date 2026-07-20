@@ -6,12 +6,15 @@ import {
   FileText,
   ListChecks,
   PenTool,
+  MessageSquare,
 } from "lucide-react";
 import { getCurrentUser } from "@/lib/auth/session";
 import { isAdmin } from "@/lib/auth/admin";
 import { listAllSubscriptions } from "@/lib/subscriptions/repository";
+import { listAllFeedback } from "@/lib/feedback/repository";
 import { getAdminStats } from "@/lib/admin/stats";
 import { AdminSubscriptionsTable } from "@/components/admin/AdminSubscriptionsTable";
+import { FeedbackList } from "@/components/admin/FeedbackList";
 import { StatCard } from "@/components/dashboard/StatCard";
 
 export default async function AdminPage() {
@@ -21,8 +24,9 @@ export default async function AdminPage() {
     redirect("/dashboard");
   }
 
-  const [subscriptions, stats] = await Promise.all([
+  const [subscriptions, feedback, stats] = await Promise.all([
     listAllSubscriptions(),
+    listAllFeedback(),
     getAdminStats(),
   ]);
 
@@ -87,6 +91,16 @@ export default async function AdminPage() {
             label="Exercices résolus"
             value={`${stats.exercisesResolvedCount}`}
           />
+          <StatCard
+            icon={MessageSquare}
+            label="Retours utilisateurs"
+            value={`${stats.feedbackCount}`}
+            hint={
+              stats.averageRating !== null
+                ? `Note moyenne : ${stats.averageRating}/5`
+                : undefined
+            }
+          />
         </div>
       </section>
 
@@ -101,6 +115,18 @@ export default async function AdminPage() {
           </p>
         </div>
         <AdminSubscriptionsTable subscriptions={subscriptions} />
+      </section>
+
+      <section className="flex flex-col gap-4">
+        <div>
+          <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
+            Retours utilisateurs
+          </h2>
+          <p className="mt-1 text-sm text-slate-500">
+            Avis et suggestions envoyés depuis la page Feedback de l&apos;app.
+          </p>
+        </div>
+        <FeedbackList feedback={feedback} />
       </section>
     </div>
   );
