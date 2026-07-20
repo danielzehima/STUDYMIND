@@ -13,13 +13,18 @@ const nextConfig: NextConfig = {
   // packages du bundling pour qu'ils utilisent le require() natif de
   // Node.js, qui résout correctement depuis node_modules.
   serverExternalPackages: ["pdf-parse", "pdfjs-dist", "@napi-rs/canvas"],
-  // pdfjs-dist charge @napi-rs/canvas via un require() dynamique interne
-  // que le traceur de fichiers de Next.js (@vercel/nft) ne détecte pas,
-  // donc le binaire natif est exclu de la fonction serverless déployée
-  // ("Cannot find module '@napi-rs/canvas'" en prod). On force son
-  // inclusion pour la route qui fait l'extraction PDF.
+  // pdfjs-dist charge @napi-rs/canvas et son propre worker
+  // (pdf.worker.mjs) via des chemins calculés au runtime que le traceur
+  // de fichiers de Next.js (@vercel/nft) ne détecte pas : ils finissent
+  // exclus de la fonction serverless déployée ("Cannot find module
+  // '@napi-rs/canvas'", puis "Cannot find module '.../pdf.worker.mjs'"
+  // en prod). On force l'inclusion des deux packages en entier pour la
+  // route qui fait l'extraction PDF.
   outputFileTracingIncludes: {
-    "/api/documents": ["./node_modules/@napi-rs/canvas*/**/*"],
+    "/api/documents": [
+      "./node_modules/@napi-rs/canvas*/**/*",
+      "./node_modules/pdfjs-dist/**/*",
+    ],
   },
 };
 
