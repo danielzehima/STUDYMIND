@@ -14,7 +14,7 @@ export function StatCard({
   return (
     <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:shadow-md">
       <div className="flex items-center gap-3">
-        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-50 text-indigo-600">
+        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-50 text-violet-600">
           <Icon size={20} />
         </div>
         <span className="text-sm font-medium text-slate-500">{label}</span>

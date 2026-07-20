@@ -45,7 +45,7 @@ export function GenerateAnalysisButton({
         type="button"
         onClick={handleClick}
         disabled={isLoading}
-        className="inline-flex w-fit items-center gap-2 rounded-full bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-indigo-700 disabled:opacity-50"
+        className="inline-flex w-fit items-center gap-2 rounded-full bg-violet-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-violet-700 disabled:opacity-50"
       >
         {isLoading ? <Spinner size={16} /> : <Sparkles size={16} />}
         {isLoading ? "Génération en cours (10-30s)..." : label}

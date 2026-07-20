@@ -63,7 +63,7 @@ export function Features() {
                   Pro
                 </span>
               )}
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-indigo-50 text-indigo-600">
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-violet-50 text-violet-600">
                 <feature.icon size={22} />
               </div>
               <h3 className="mt-4 text-base font-semibold text-slate-900">

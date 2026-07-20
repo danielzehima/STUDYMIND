@@ -78,7 +78,7 @@ export function QuizPlayer({
       <div className="flex flex-col gap-6">
         <div className="rounded-2xl border border-slate-200 bg-white p-6 text-center">
           <p className="text-sm font-medium text-slate-500">Votre score</p>
-          <p className="mt-1 text-4xl font-bold text-indigo-600">
+          <p className="mt-1 text-4xl font-bold text-violet-600">
             {result.score} / {result.total_questions}
           </p>
         </div>
@@ -131,7 +131,7 @@ export function QuizPlayer({
 
         <Link
           href="/documents"
-          className="inline-flex w-fit items-center gap-2 rounded-full bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-indigo-700"
+          className="inline-flex w-fit items-center gap-2 rounded-full bg-violet-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-violet-700"
         >
           Retour aux documents
         </Link>
@@ -153,14 +153,14 @@ export function QuizPlayer({
                   key={optIndex}
                   className={`flex cursor-pointer items-center gap-2 rounded-lg border px-3 py-2 text-sm transition ${
                     answers[q.id] === optIndex
-                      ? "border-indigo-600 bg-indigo-50 text-indigo-700"
+                      ? "border-violet-600 bg-violet-50 text-violet-700"
                       : "border-slate-200 text-slate-600 hover:bg-slate-50"
                   }`}
                 >
                   <input
                     type="radio"
                     name={q.id}
-                    className="accent-indigo-600"
+                    className="accent-violet-600"
                     checked={answers[q.id] === optIndex}
                     onChange={() =>
                       setAnswers((prev) => ({ ...prev, [q.id]: optIndex }))
@@ -180,7 +180,7 @@ export function QuizPlayer({
         type="button"
         onClick={handleSubmit}
         disabled={!allAnswered || isSubmitting}
-        className="inline-flex w-fit items-center gap-2 rounded-full bg-indigo-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-indigo-700 disabled:opacity-50"
+        className="inline-flex w-fit items-center gap-2 rounded-full bg-violet-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-violet-700 disabled:opacity-50"
       >
         {isSubmitting && <Spinner size={16} />}
         {isSubmitting ? "Correction en cours..." : "Valider mes réponses"}

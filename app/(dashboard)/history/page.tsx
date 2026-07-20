@@ -41,7 +41,7 @@ export default async function HistoryPage() {
                 {attempt.document_id ? (
                   <Link
                     href={`/documents/${attempt.document_id}`}
-                    className="text-sm font-semibold text-slate-900 hover:text-indigo-600"
+                    className="text-sm font-semibold text-slate-900 hover:text-violet-600"
                   >
                     {attempt.document_title}
                   </Link>
@@ -58,7 +58,7 @@ export default async function HistoryPage() {
                   })}
                 </p>
               </div>
-              <span className="text-sm font-semibold text-indigo-600">
+              <span className="text-sm font-semibold text-violet-600">
                 {attempt.score} / {attempt.total_questions}
               </span>
             </li>

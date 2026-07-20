@@ -61,7 +61,7 @@ export default async function DashboardPage() {
         <div className="rounded-2xl border border-dashed border-slate-300 bg-white p-10 text-center">
           <p className="text-sm text-slate-500">
             Vous n&apos;avez pas encore de document.{" "}
-            <Link href="/documents" className="font-medium text-indigo-600 underline">
+            <Link href="/documents" className="font-medium text-violet-600 underline">
               Uploadez votre premier cours
             </Link>
             .

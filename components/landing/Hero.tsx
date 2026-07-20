@@ -11,16 +11,16 @@ import { Logo } from "@/components/ui/Logo";
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-indigo-50 via-white to-white">
+    <section className="relative overflow-hidden bg-gradient-to-b from-violet-50 via-white to-white">
       <div className="mx-auto flex max-w-4xl flex-col items-center px-6 pb-20 pt-20 text-center sm:pt-28">
-        <span className="inline-flex items-center gap-2 rounded-full border border-indigo-200 bg-indigo-50 px-4 py-1.5 text-sm font-medium text-indigo-700">
+        <span className="inline-flex items-center gap-2 rounded-full border border-violet-200 bg-violet-50 px-4 py-1.5 text-sm font-medium text-violet-700">
           <Sparkles size={16} />
           Propulsé par l&apos;IA DeepSeek
         </span>
 
         <h1 className="mt-6 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl md:text-6xl">
           Transformez vos cours en{" "}
-          <span className="bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-violet-600 to-violet-600 bg-clip-text text-transparent">
             réussite
           </span>{" "}
           : résumés, quiz et corrections en un clic.
@@ -35,7 +35,7 @@ export function Hero() {
         <div className="mt-10 flex flex-col items-center gap-3 sm:flex-row">
           <Link
             href="/signup"
-            className="group inline-flex items-center gap-2 rounded-full bg-indigo-600 px-8 py-4 text-base font-semibold text-white shadow-lg shadow-indigo-600/20 transition hover:bg-indigo-700 hover:shadow-xl hover:shadow-indigo-600/30"
+            className="group inline-flex items-center gap-2 rounded-full bg-violet-600 px-8 py-4 text-base font-semibold text-white shadow-lg shadow-violet-600/20 transition hover:bg-violet-700 hover:shadow-xl hover:shadow-violet-600/30"
           >
             Créer mon compte gratuit
             <ArrowRight
@@ -51,7 +51,7 @@ export function Hero() {
         {/* Mockup du tableau de bord (recréé en HTML/CSS, pas une vraie
             capture d'écran, pour rester léger et ne jamais devenir obsolète) */}
         <div className="relative mt-16 w-full">
-          <div className="absolute inset-0 -z-10 mx-auto h-full w-full max-w-3xl rounded-3xl bg-gradient-to-tr from-indigo-200 via-violet-100 to-transparent blur-3xl" />
+          <div className="absolute inset-0 -z-10 mx-auto h-full w-full max-w-3xl rounded-3xl bg-gradient-to-tr from-violet-200 via-violet-100 to-transparent blur-3xl" />
           <div className="mx-auto flex w-full max-w-4xl overflow-hidden rounded-2xl border border-slate-200 bg-white text-left shadow-2xl shadow-slate-900/10">
             {/* Sidebar miniature */}
             <div className="hidden w-40 shrink-0 border-r border-slate-100 bg-slate-50 p-4 sm:block">
@@ -62,7 +62,7 @@ export function Hero() {
                 </span>
               </div>
               <div className="flex flex-col gap-1">
-                <div className="flex items-center gap-2 rounded-lg bg-indigo-50 px-2.5 py-1.5 text-[11px] font-medium text-indigo-600">
+                <div className="flex items-center gap-2 rounded-lg bg-violet-50 px-2.5 py-1.5 text-[11px] font-medium text-violet-600">
                   <LayoutDashboard size={12} />
                   Tableau de bord
                 </div>
@@ -88,7 +88,7 @@ export function Hero() {
 
               <div className="mt-4 grid grid-cols-3 gap-3">
                 <div className="rounded-xl border border-slate-200 p-3">
-                  <FileText size={14} className="text-indigo-600" />
+                  <FileText size={14} className="text-violet-600" />
                   <p className="mt-2 text-lg font-bold text-slate-900 sm:text-xl">
                     2/3
                   </p>
@@ -97,7 +97,7 @@ export function Hero() {
                   </p>
                 </div>
                 <div className="rounded-xl border border-slate-200 p-3">
-                  <ListChecks size={14} className="text-indigo-600" />
+                  <ListChecks size={14} className="text-violet-600" />
                   <p className="mt-2 text-lg font-bold text-slate-900 sm:text-xl">
                     4
                   </p>
@@ -106,7 +106,7 @@ export function Hero() {
                   </p>
                 </div>
                 <div className="rounded-xl border border-slate-200 p-3">
-                  <TrendingUp size={14} className="text-indigo-600" />
+                  <TrendingUp size={14} className="text-violet-600" />
                   <p className="mt-2 text-lg font-bold text-slate-900 sm:text-xl">
                     86%
                   </p>

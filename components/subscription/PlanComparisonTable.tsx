@@ -96,14 +96,14 @@ export function PlanComparisonTable({
         <div
           className={`flex flex-col rounded-2xl border p-6 ${
             subscription.plan === "free"
-              ? "border-indigo-600 shadow-sm"
+              ? "border-violet-600 shadow-sm"
               : "border-slate-200"
           }`}
         >
           <div className="flex items-center justify-between">
             <h3 className="text-lg font-semibold text-slate-900">Gratuit</h3>
             {subscription.plan === "free" && (
-              <span className="rounded-full bg-indigo-50 px-3 py-1 text-xs font-semibold text-indigo-600">
+              <span className="rounded-full bg-violet-50 px-3 py-1 text-xs font-semibold text-violet-600">
                 Plan actuel
               </span>
             )}
@@ -115,7 +115,7 @@ export function PlanComparisonTable({
                 key={feature}
                 className="flex items-start gap-2 text-sm text-slate-600"
               >
-                <Check size={18} className="mt-0.5 shrink-0 text-indigo-600" />
+                <Check size={18} className="mt-0.5 shrink-0 text-violet-600" />
                 {feature}
               </li>
             ))}
@@ -136,14 +136,14 @@ export function PlanComparisonTable({
         <div
           className={`flex flex-col rounded-2xl border p-6 ${
             subscription.plan === "pro"
-              ? "border-indigo-600 shadow-sm"
+              ? "border-violet-600 shadow-sm"
               : "border-slate-200"
           }`}
         >
           <div className="flex items-center justify-between">
             <h3 className="text-lg font-semibold text-slate-900">Pro</h3>
             {subscription.plan === "pro" && (
-              <span className="rounded-full bg-indigo-50 px-3 py-1 text-xs font-semibold text-indigo-600">
+              <span className="rounded-full bg-violet-50 px-3 py-1 text-xs font-semibold text-violet-600">
                 Plan actuel
               </span>
             )}
@@ -191,7 +191,7 @@ export function PlanComparisonTable({
                 key={feature}
                 className="flex items-start gap-2 text-sm text-slate-600"
               >
-                <Check size={18} className="mt-0.5 shrink-0 text-indigo-600" />
+                <Check size={18} className="mt-0.5 shrink-0 text-violet-600" />
                 {feature}
               </li>
             ))}
@@ -201,7 +201,7 @@ export function PlanComparisonTable({
               type="button"
               onClick={handleUpgrade}
               disabled={isLoading}
-              className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-indigo-700 disabled:opacity-50"
+              className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-violet-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-violet-700 disabled:opacity-50"
             >
               {isLoading && <Spinner size={16} />}
               Payer et passer au plan Pro

@@ -48,7 +48,7 @@ export default async function DocumentExercisesPage({
       <div>
         <Link
           href={`/documents/${id}`}
-          className="inline-flex items-center gap-1 text-xs font-medium text-slate-500 hover:text-indigo-600"
+          className="inline-flex items-center gap-1 text-xs font-medium text-slate-500 hover:text-violet-600"
         >
           <ArrowLeft size={14} />
           Retour au document

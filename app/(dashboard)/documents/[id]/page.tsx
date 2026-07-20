@@ -98,7 +98,7 @@ export default async function DocumentDetailPage({
                   key={index}
                   className="flex items-start gap-2 text-sm text-slate-600"
                 >
-                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-indigo-600" />
+                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-violet-600" />
                   {point}
                 </li>
               ))}
@@ -117,14 +117,14 @@ export default async function DocumentDetailPage({
               <li key={quiz.id}>
                 <Link
                   href={`/documents/${id}/quiz/${quiz.id}`}
-                  className="flex items-center justify-between rounded-xl border border-slate-200 px-4 py-3 text-sm transition hover:border-indigo-300 hover:bg-indigo-50"
+                  className="flex items-center justify-between rounded-xl border border-slate-200 px-4 py-3 text-sm transition hover:border-violet-300 hover:bg-violet-50"
                 >
                   <span className="flex items-center gap-2 text-slate-700">
-                    <ListChecks size={16} className="text-indigo-600" />
+                    <ListChecks size={16} className="text-violet-600" />
                     Quiz du{" "}
                     {new Date(quiz.created_at).toLocaleDateString("fr-FR")}
                   </span>
-                  <span className="text-indigo-600">Lancer →</span>
+                  <span className="text-violet-600">Lancer →</span>
                 </Link>
               </li>
             ))}
@@ -141,19 +141,19 @@ export default async function DocumentDetailPage({
 
       <Link
         href={`/documents/${id}/exercises`}
-        className="flex items-center justify-between rounded-2xl border border-slate-200 bg-white p-6 transition hover:border-indigo-300 hover:bg-indigo-50"
+        className="flex items-center justify-between rounded-2xl border border-slate-200 bg-white p-6 transition hover:border-violet-300 hover:bg-violet-50"
       >
         <span className="flex items-center gap-2 text-sm font-semibold text-slate-900">
-          <PenTool size={16} className="text-indigo-600" />
+          <PenTool size={16} className="text-violet-600" />
           Résolution d&apos;exercices
           {!isPro && (
-            <span className="inline-flex items-center gap-1 rounded-full bg-indigo-100 px-2 py-0.5 text-xs font-medium text-indigo-600">
+            <span className="inline-flex items-center gap-1 rounded-full bg-violet-100 px-2 py-0.5 text-xs font-medium text-violet-600">
               <Lock size={10} />
               Pro
             </span>
           )}
         </span>
-        <span className="text-indigo-600">Ouvrir →</span>
+        <span className="text-violet-600">Ouvrir →</span>
       </Link>
 
       <div className="rounded-2xl border border-slate-200 bg-white p-6">

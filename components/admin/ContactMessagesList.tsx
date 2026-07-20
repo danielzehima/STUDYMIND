@@ -14,7 +14,7 @@ export function ContactMessagesList({ messages }: { messages: ContactMessage[] }
               <p className="text-sm font-medium text-slate-900">{m.name}</p>
               <a
                 href={`mailto:${m.email}`}
-                className="text-xs text-indigo-600 hover:underline"
+                className="text-xs text-violet-600 hover:underline"
               >
                 {m.email}
               </a>

@@ -54,11 +54,11 @@ export function ExerciseSolutionCard({
       </div>
 
       {finalAnswer && (
-        <div className="mt-3 rounded-xl border border-indigo-100 bg-indigo-50 px-4 py-3">
-          <span className="text-xs font-semibold uppercase tracking-wide text-indigo-500">
+        <div className="mt-3 rounded-xl border border-violet-100 bg-violet-50 px-4 py-3">
+          <span className="text-xs font-semibold uppercase tracking-wide text-violet-500">
             Réponse finale
           </span>
-          <p className="mt-1 text-sm font-medium text-indigo-900">
+          <p className="mt-1 text-sm font-medium text-violet-900">
             {finalAnswer}
           </p>
         </div>

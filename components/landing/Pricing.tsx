@@ -56,12 +56,12 @@ export function Pricing() {
               key={plan.name}
               className={`relative flex flex-col rounded-2xl border p-8 transition hover:-translate-y-1 ${
                 plan.highlighted
-                  ? "border-indigo-600 bg-slate-900 shadow-xl shadow-indigo-600/10 hover:shadow-2xl"
+                  ? "border-violet-600 bg-slate-900 shadow-xl shadow-violet-600/10 hover:shadow-2xl"
                   : "border-slate-200 bg-white shadow-sm hover:shadow-lg"
               }`}
             >
               {plan.highlighted && (
-                <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-indigo-600 px-3 py-1 text-xs font-semibold text-white">
+                <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-violet-600 px-3 py-1 text-xs font-semibold text-white">
                   Le plus populaire
                 </span>
               )}
@@ -106,7 +106,7 @@ export function Pricing() {
                     <Check
                       size={18}
                       className={`shrink-0 ${
-                        plan.highlighted ? "text-indigo-400" : "text-indigo-600"
+                        plan.highlighted ? "text-violet-400" : "text-violet-600"
                       }`}
                     />
                     <span
@@ -124,7 +124,7 @@ export function Pricing() {
                 href={plan.href}
                 className={`mt-8 inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold transition ${
                   plan.highlighted
-                    ? "bg-indigo-600 text-white hover:bg-indigo-500"
+                    ? "bg-violet-600 text-white hover:bg-violet-500"
                     : "bg-slate-100 text-slate-900 hover:bg-slate-200"
                 }`}
               >

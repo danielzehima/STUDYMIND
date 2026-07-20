@@ -40,10 +40,10 @@ export function HowItWorks() {
               key={step.title}
               className="flex flex-col items-center text-center"
             >
-              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-indigo-600 text-white shadow-lg shadow-indigo-600/20">
+              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-violet-600 text-white shadow-lg shadow-violet-600/20">
                 <step.icon size={26} />
               </div>
-              <span className="mt-4 text-xs font-semibold uppercase tracking-wider text-indigo-600">
+              <span className="mt-4 text-xs font-semibold uppercase tracking-wider text-violet-600">
                 Étape {index + 1}
               </span>
               <h3 className="mt-2 text-lg font-semibold text-slate-900">

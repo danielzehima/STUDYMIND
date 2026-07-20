@@ -53,7 +53,7 @@ export function FeedbackForm() {
         <button
           type="button"
           onClick={() => setSubmitted(false)}
-          className="mt-2 text-sm font-medium text-indigo-600 hover:underline"
+          className="mt-2 text-sm font-medium text-violet-600 hover:underline"
         >
           Envoyer un autre retour
         </button>
@@ -106,7 +106,7 @@ export function FeedbackForm() {
           maxLength={2000}
           rows={5}
           placeholder="Qu'est-ce qui fonctionne bien ? Qu'est-ce qu'on pourrait améliorer ?"
-          className="rounded-xl border border-slate-300 px-3 py-2 text-sm outline-none transition focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100"
+          className="rounded-xl border border-slate-300 px-3 py-2 text-sm outline-none transition focus:border-violet-400 focus:ring-2 focus:ring-violet-100"
         />
       </div>
 
@@ -115,7 +115,7 @@ export function FeedbackForm() {
       <button
         type="submit"
         disabled={isLoading || message.trim().length === 0}
-        className="inline-flex w-fit items-center gap-2 rounded-full bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-indigo-700 disabled:opacity-50"
+        className="inline-flex w-fit items-center gap-2 rounded-full bg-violet-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-violet-700 disabled:opacity-50"
       >
         {isLoading && <Spinner size={16} />}
         Envoyer mon retour
