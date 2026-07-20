@@ -12,7 +12,7 @@ const nextConfig: NextConfig = {
   // résolution ("Cannot find module .../pdf.worker.mjs"). On sort ces
   // packages du bundling pour qu'ils utilisent le require() natif de
   // Node.js, qui résout correctement depuis node_modules.
-  serverExternalPackages: ["pdf-parse", "pdfjs-dist"],
+  serverExternalPackages: ["pdf-parse", "pdfjs-dist", "@napi-rs/canvas"],
 };
 
 export default nextConfig;
