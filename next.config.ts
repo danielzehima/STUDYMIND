@@ -12,7 +12,17 @@ const nextConfig: NextConfig = {
   // résolution ("Cannot find module .../pdf.worker.mjs"). On sort ces
   // packages du bundling pour qu'ils utilisent le require() natif de
   // Node.js, qui résout correctement depuis node_modules.
-  serverExternalPackages: ["pdf-parse", "pdfjs-dist", "@napi-rs/canvas"],
+  // pdfkit résout ses fichiers de police via __dirname au moment du build ;
+  // Turbopack a essayé de bundler pdfkit et a réécrit ce chemin en
+  // "/ROOT/node_modules/pdfkit/js/data/..." (placeholder jamais résolu en
+  // prod, "ENOENT" au runtime). Même classe de bug que pdf-parse/
+  // pdfjs-dist ci-dessous : on le sort du bundling.
+  serverExternalPackages: [
+    "pdf-parse",
+    "pdfjs-dist",
+    "@napi-rs/canvas",
+    "pdfkit",
+  ],
   // pdfjs-dist charge @napi-rs/canvas et son propre worker
   // (pdf.worker.mjs) via des chemins calculés au runtime que le traceur
   // de fichiers de Next.js (@vercel/nft) ne détecte pas : ils finissent
