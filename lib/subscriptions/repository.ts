@@ -78,6 +78,52 @@ export async function downgradeToFree(userId: string): Promise<Subscription> {
   return data;
 }
 
+// Appelé depuis le webhook GeniusPay (payment.success) une fois la
+// signature vérifiée — voir app/api/webhooks/payment/route.ts. Idempotent :
+// si ce paiement (reference) a déjà été appliqué, ne réapplique rien (les
+// webhooks peuvent être livrés plusieurs fois).
+export async function activateProFromPayment(
+  userId: string,
+  input: {
+    reference: string;
+    paymentMethodType: "card" | "mobile_money";
+    paymentProvider: string | null;
+    periodMonths: number;
+  }
+): Promise<void> {
+  const supabase = createAdminClient();
+
+  const { data: existing, error: existingError } = await supabase
+    .from("subscriptions")
+    .select("external_subscription_id")
+    .eq("user_id", userId)
+    .maybeSingle();
+
+  if (existingError) throw existingError;
+  if (existing?.external_subscription_id === input.reference) return;
+
+  const now = new Date();
+  const periodEnd = new Date(now);
+  periodEnd.setMonth(periodEnd.getMonth() + input.periodMonths);
+
+  const { error } = await supabase
+    .from("subscriptions")
+    .update({
+      plan: "pro",
+      status: "active",
+      payment_method_type: input.paymentMethodType,
+      payment_provider: input.paymentProvider,
+      external_subscription_id: input.reference,
+      current_period_start: now.toISOString(),
+      current_period_end: periodEnd.toISOString(),
+      cancel_at_period_end: false,
+      updated_at: now.toISOString(),
+    })
+    .eq("user_id", userId);
+
+  if (error) throw error;
+}
+
 export type SubscriptionWithProfile = Subscription & {
   user_id: string;
   email: string;

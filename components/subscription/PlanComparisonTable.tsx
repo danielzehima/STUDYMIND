@@ -30,13 +30,40 @@ export function PlanComparisonTable({
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [period, setPeriod] = useState<"monthly" | "quarterly">("monthly");
 
-  async function handleAction(action: "upgrade" | "downgrade") {
+  async function handleUpgrade() {
     setError(null);
     setIsLoading(true);
 
     try {
-      const response = await fetch(`/api/subscription/${action}`, {
+      const response = await fetch("/api/subscription/upgrade", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ period }),
+      });
+
+      const body = await response.json().catch(() => null);
+
+      if (!response.ok) {
+        throw new Error(body?.message ?? "Impossible de lancer le paiement.");
+      }
+
+      window.location.href = body.checkout_url;
+    } catch (err) {
+      setError(
+        err instanceof Error ? err.message : "Impossible de lancer le paiement."
+      );
+      setIsLoading(false);
+    }
+  }
+
+  async function handleDowngrade() {
+    setError(null);
+    setIsLoading(true);
+
+    try {
+      const response = await fetch("/api/subscription/downgrade", {
         method: "POST",
       });
 
@@ -96,7 +123,7 @@ export function PlanComparisonTable({
           {subscription.plan === "pro" && (
             <button
               type="button"
-              onClick={() => handleAction("downgrade")}
+              onClick={handleDowngrade}
               disabled={isLoading}
               className="mt-6 inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 px-5 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50 disabled:opacity-50"
             >
@@ -123,13 +150,41 @@ export function PlanComparisonTable({
           </div>
           <div className="mt-4 flex items-baseline gap-1">
             <span className="text-3xl font-bold text-slate-900">
-              3 000 FCFA
+              {period === "monthly" ? "3 000 FCFA" : "7 500 FCFA"}
             </span>
-            <span className="text-slate-500">/mois</span>
+            <span className="text-slate-500">
+              {period === "monthly" ? "/mois" : "/trimestre"}
+            </span>
           </div>
-          <p className="mt-1 text-xs text-slate-400">
-            ou 7 500 FCFA / trimestre
-          </p>
+
+          {subscription.plan === "free" && (
+            <div className="mt-3 inline-flex w-fit rounded-full bg-slate-100 p-1 text-xs font-medium">
+              <button
+                type="button"
+                onClick={() => setPeriod("monthly")}
+                className={`rounded-full px-3 py-1.5 transition ${
+                  period === "monthly"
+                    ? "bg-white text-slate-900 shadow-sm"
+                    : "text-slate-500"
+                }`}
+              >
+                Mensuel
+              </button>
+              <button
+                type="button"
+                onClick={() => setPeriod("quarterly")}
+                className={`rounded-full px-3 py-1.5 transition ${
+                  period === "quarterly"
+                    ? "bg-white text-slate-900 shadow-sm"
+                    : "text-slate-500"
+                }`}
+              >
+                Trimestriel
+                <span className="ml-1 text-emerald-600">-17%</span>
+              </button>
+            </div>
+          )}
+
           <ul className="mt-6 flex flex-1 flex-col gap-3">
             {FEATURES.pro.map((feature) => (
               <li
@@ -144,21 +199,20 @@ export function PlanComparisonTable({
           {subscription.plan === "free" && (
             <button
               type="button"
-              onClick={() => handleAction("upgrade")}
+              onClick={handleUpgrade}
               disabled={isLoading}
               className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-indigo-700 disabled:opacity-50"
             >
               {isLoading && <Spinner size={16} />}
-              Passer au plan Pro
+              Payer et passer au plan Pro
             </button>
           )}
         </div>
       </div>
 
       <p className="text-xs text-slate-400">
-        Le paiement en ligne (mobile money / carte) n&apos;est pas encore
-        branché — ce bouton active le plan Pro directement pour la phase de
-        test.
+        Paiement sécurisé par mobile money (Wave, Orange Money, MTN, Moov) ou
+        carte bancaire, via GeniusPay.
       </p>
 
       {error && <ErrorBanner message={error} />}
