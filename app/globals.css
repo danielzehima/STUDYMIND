@@ -8,8 +8,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-plus-jakarta-sans);
 }
 
 /* Pas de thème sombre : toute l'interface (dashboard, admin, landing) est
@@ -21,5 +20,14 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-plus-jakarta-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Tailwind v4 n'inclut plus cursor: pointer sur les boutons dans son reset
+   (contrairement au comportement historique) — sans ça, tous les <button>
+   de l'app affichent le curseur par défaut du navigateur. */
+@layer base {
+  button:not(:disabled) {
+    cursor: pointer;
+  }
 }

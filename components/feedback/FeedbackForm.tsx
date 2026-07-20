@@ -106,7 +106,7 @@ export function FeedbackForm() {
           maxLength={2000}
           rows={5}
           placeholder="Qu'est-ce qui fonctionne bien ? Qu'est-ce qu'on pourrait améliorer ?"
-          className="rounded-xl border border-slate-300 px-3 py-2 text-sm outline-none focus:border-indigo-400"
+          className="rounded-xl border border-slate-300 px-3 py-2 text-sm outline-none transition focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100"
         />
       </div>
 

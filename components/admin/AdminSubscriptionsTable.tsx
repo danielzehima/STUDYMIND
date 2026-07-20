@@ -72,7 +72,7 @@ export function AdminSubscriptionsTable({
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Rechercher un utilisateur..."
-          className="w-full rounded-full border border-slate-300 py-2 pl-9 pr-3 text-sm outline-none focus:border-indigo-400"
+          className="w-full rounded-full border border-slate-300 py-2 pl-9 pr-3 text-sm outline-none transition focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100"
         />
       </div>
 
