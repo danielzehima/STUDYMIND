@@ -1,6 +1,8 @@
 import { createClient } from "@/lib/supabase/server";
 import { toErrorResponse, AppError } from "@/lib/errors";
 import { createContactMessage } from "@/lib/contact/repository";
+import { sendEmail } from "@/lib/email/resend";
+import { contactNotificationEmailHtml } from "@/lib/email/templates";
 
 const MAX_MESSAGE_LENGTH = 4000;
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -41,6 +43,17 @@ export async function POST(request: Request) {
       email,
       message,
     });
+
+    const notifyTo = process.env.CONTACT_NOTIFICATION_EMAIL;
+    if (notifyTo) {
+      await sendEmail({
+        to: notifyTo,
+        subject: `Nouveau message de contact — ${name}`,
+        html: contactNotificationEmailHtml({ name, email, message }),
+      }).catch((error) => {
+        console.error("[contact] échec envoi notification admin", error);
+      });
+    }
 
     return Response.json(contactMessage, { status: 201 });
   } catch (error) {

@@ -12,12 +12,11 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+/* Pas de thème sombre : toute l'interface (dashboard, admin, landing) est
+   conçue en clair fixe (bg-white/slate-50 partout, aucune variante dark:).
+   Le bascule automatique via prefers-color-scheme rendait le texte des
+   champs de formulaire invisible (fond blanc des inputs + couleur héritée
+   de body qui passait en quasi-blanc sur système en mode sombre). */
 
 body {
   background: var(--background);

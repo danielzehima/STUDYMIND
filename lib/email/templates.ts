@@ -3,6 +3,14 @@ const PERIOD_LABEL: Record<"monthly" | "quarterly", string> = {
   quarterly: "1 trimestre",
 };
 
+function escapeHtml(text: string): string {
+  return text
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
 export function invoiceEmailHtml(input: {
   amount: number;
   period: "monthly" | "quarterly";
@@ -35,6 +43,21 @@ export function paymentReminderEmailHtml(input: {
         </a>
       </p>
       <p style="color: #64748b; font-size: 13px;">Ce lien expire 24h après le début du paiement. Si vous ne souhaitez plus passer au plan Pro, ignorez simplement cet email.</p>
+    </div>
+  `;
+}
+
+export function contactNotificationEmailHtml(input: {
+  name: string;
+  email: string;
+  message: string;
+}): string {
+  return `
+    <div style="font-family: sans-serif; color: #1e293b; max-width: 480px;">
+      <h2 style="color: #4f46e5;">Nouveau message de contact</h2>
+      <p><strong>Nom :</strong> ${escapeHtml(input.name)}<br/>
+      <strong>Email :</strong> ${escapeHtml(input.email)}</p>
+      <p style="white-space: pre-wrap; border-left: 3px solid #e2e8f0; padding-left: 12px;">${escapeHtml(input.message)}</p>
     </div>
   `;
 }

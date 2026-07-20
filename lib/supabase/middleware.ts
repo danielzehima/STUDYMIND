@@ -1,7 +1,18 @@
 import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
 
-const PUBLIC_PATHS = ['/', '/login', '/signup']
+const PUBLIC_PATHS = ['/', '/login', '/signup', '/contact']
+
+// Endpoints appelés par des services externes (webhook GeniusPay, Vercel
+// Cron) ou volontairement publics (formulaire de contact) : jamais de
+// cookie de session, donc jamais de redirection /login. Le webhook et le
+// cron ont leur propre vérification (signature HMAC / CRON_SECRET) — les
+// laisser passer ici ne les rend pas non protégés.
+const PUBLIC_API_PATHS = [
+  '/api/contact',
+  '/api/webhooks/payment',
+  '/api/cron/payment-reminders',
+]
 
 // Logique de rafraîchissement de session + redirections, appelée depuis
 // proxy.ts (voir architecture.md §2.3 — proxy.ts remplace middleware.ts
@@ -35,7 +46,8 @@ export async function updateSession(request: NextRequest) {
   } = await supabase.auth.getUser()
 
   const path = request.nextUrl.pathname
-  const isPublicPath = PUBLIC_PATHS.includes(path)
+  const isPublicPath =
+    PUBLIC_PATHS.includes(path) || PUBLIC_API_PATHS.includes(path)
 
   if (!user && !isPublicPath) {
     const url = request.nextUrl.clone()
