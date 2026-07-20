@@ -9,17 +9,19 @@ import { logout } from "@/app/actions/auth";
 export function DashboardShell({
   email,
   plan,
+  isAdmin = false,
   children,
 }: {
   email: string;
   plan: "free" | "pro";
+  isAdmin?: boolean;
   children: React.ReactNode;
 }) {
   const [open, setOpen] = useState(false);
 
   return (
     <div className="flex min-h-screen bg-slate-50">
-      <Sidebar open={open} onClose={() => setOpen(false)} />
+      <Sidebar open={open} onClose={() => setOpen(false)} isAdmin={isAdmin} />
 
       <div className="flex flex-1 flex-col">
         <header className="sticky top-0 z-30 flex items-center justify-between border-b border-slate-200 bg-white/80 px-6 py-4 backdrop-blur-md">

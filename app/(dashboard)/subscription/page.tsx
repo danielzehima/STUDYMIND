@@ -1,11 +1,20 @@
-export default function SubscriptionPage() {
+import { getCurrentUser } from "@/lib/auth/session";
+import { getSubscription } from "@/lib/subscriptions/repository";
+import { PlanComparisonTable } from "@/components/subscription/PlanComparisonTable";
+
+export default async function SubscriptionPage() {
+  const user = await getCurrentUser();
+  const subscription = await getSubscription(user.id);
+
   return (
-    <div className="flex flex-col gap-2">
-      <h1 className="text-2xl font-semibold text-slate-900">Abonnement</h1>
-      <p className="text-sm text-slate-500">
-        La gestion de l&apos;abonnement (upgrade/downgrade) arrive à
-        l&apos;Étape 6.
-      </p>
+    <div className="flex flex-col gap-6">
+      <div>
+        <h1 className="text-2xl font-semibold text-slate-900">Abonnement</h1>
+        <p className="text-sm text-slate-500">
+          Gérez votre plan Study Mind.
+        </p>
+      </div>
+      <PlanComparisonTable subscription={subscription} />
     </div>
   );
 }

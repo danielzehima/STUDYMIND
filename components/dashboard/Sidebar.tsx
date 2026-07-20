@@ -7,6 +7,7 @@ import {
   FileText,
   History,
   CreditCard,
+  ShieldCheck,
   X,
 } from "lucide-react";
 import { Logo } from "@/components/ui/Logo";
@@ -18,14 +19,23 @@ const LINKS = [
   { href: "/subscription", label: "Abonnement", icon: CreditCard },
 ];
 
+const ADMIN_LINK = {
+  href: "/admin",
+  label: "Administration",
+  icon: ShieldCheck,
+};
+
 export function Sidebar({
   open,
   onClose,
+  isAdmin = false,
 }: {
   open: boolean;
   onClose: () => void;
+  isAdmin?: boolean;
 }) {
   const pathname = usePathname();
+  const links = isAdmin ? [...LINKS, ADMIN_LINK] : LINKS;
 
   return (
     <>
@@ -60,7 +70,7 @@ export function Sidebar({
         </div>
 
         <nav className="flex flex-1 flex-col gap-1 px-3">
-          {LINKS.map((link) => {
+          {links.map((link) => {
             const active = pathname === link.href;
             return (
               <Link

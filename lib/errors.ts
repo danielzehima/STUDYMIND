@@ -33,6 +33,12 @@ export class PlanRequiredError extends AppError {
   }
 }
 
+export class AdminRequiredError extends AppError {
+  constructor(message = 'Accès réservé aux administrateurs.') {
+    super('ADMIN_REQUIRED', message, 403)
+  }
+}
+
 // Convertit une erreur en réponse JSON uniforme {error_code, message} pour
 // les Route Handlers (voir architecture.md §3.1).
 export function toErrorResponse(error: unknown): Response {

@@ -20,7 +20,7 @@ export default async function DashboardLayout({
   const admin = createAdminClient();
   const { data: profile } = await admin
     .from("profiles")
-    .select("plan")
+    .select("plan, is_admin")
     .eq("id", user.id)
     .single();
 
@@ -28,6 +28,7 @@ export default async function DashboardLayout({
     <DashboardShell
       email={user.email ?? ""}
       plan={(profile?.plan as "free" | "pro") ?? "free"}
+      isAdmin={profile?.is_admin ?? false}
     >
       {children}
     </DashboardShell>
