@@ -9,6 +9,13 @@ export function proxy(request: NextRequest) {
 
 export const config = {
   matcher: [
-    '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
+    // Exclut aussi les endpoints appelés par des services externes
+    // (webhook GeniusPay, Vercel Cron) : ils n'ont pas de session à
+    // rafraîchir, et faire tourner ce middleware Edge dessus expose à un
+    // bug connu de Vercel ("INVALID_REQUEST_METHOD") sur les requêtes
+    // POST envoyées avec l'en-tête "Expect: 100-continue" par certains
+    // clients HTTP serveur-à-serveur — voir
+    // github.com/vercel/vercel/issues/8003.
+    '/((?!_next/static|_next/image|favicon.ico|api/webhooks/payment|api/cron/payment-reminders|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
   ],
 }
