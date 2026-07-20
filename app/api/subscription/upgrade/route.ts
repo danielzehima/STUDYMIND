@@ -1,6 +1,7 @@
 import { getCurrentUser } from "@/lib/auth/session";
 import { toErrorResponse, AppError } from "@/lib/errors";
 import { createPayment, GeniusPayError } from "@/lib/geniuspay/client";
+import { createPaymentAttempt } from "@/lib/payments/repository";
 
 const PRICING = {
   monthly: { amount: 3000, label: "1 mois" },
@@ -39,6 +40,17 @@ export async function POST(request: Request) {
         502
       );
     }
+
+    // Trace le paiement dès son initiation (avant confirmation) — permet la
+    // relance des paniers abandonnés (voir app/api/cron/payment-reminders)
+    // et l'historique de facturation.
+    await createPaymentAttempt({
+      userId: user.id,
+      reference: payment.reference,
+      amount: pricing.amount,
+      period,
+      checkoutUrl: payment.checkout_url,
+    });
 
     return Response.json({ checkout_url: payment.checkout_url });
   } catch (error) {

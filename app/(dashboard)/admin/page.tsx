@@ -7,14 +7,17 @@ import {
   ListChecks,
   PenTool,
   MessageSquare,
+  Mail,
 } from "lucide-react";
 import { getCurrentUser } from "@/lib/auth/session";
 import { isAdmin } from "@/lib/auth/admin";
 import { listAllSubscriptions } from "@/lib/subscriptions/repository";
 import { listAllFeedback } from "@/lib/feedback/repository";
+import { listContactMessages } from "@/lib/contact/repository";
 import { getAdminStats } from "@/lib/admin/stats";
 import { AdminSubscriptionsTable } from "@/components/admin/AdminSubscriptionsTable";
 import { FeedbackList } from "@/components/admin/FeedbackList";
+import { ContactMessagesList } from "@/components/admin/ContactMessagesList";
 import { StatCard } from "@/components/dashboard/StatCard";
 
 export default async function AdminPage() {
@@ -24,9 +27,10 @@ export default async function AdminPage() {
     redirect("/dashboard");
   }
 
-  const [subscriptions, feedback, stats] = await Promise.all([
+  const [subscriptions, feedback, contactMessages, stats] = await Promise.all([
     listAllSubscriptions(),
     listAllFeedback(),
+    listContactMessages(),
     getAdminStats(),
   ]);
 
@@ -101,6 +105,11 @@ export default async function AdminPage() {
                 : undefined
             }
           />
+          <StatCard
+            icon={Mail}
+            label="Messages de contact"
+            value={`${stats.contactMessagesCount}`}
+          />
         </div>
       </section>
 
@@ -127,6 +136,18 @@ export default async function AdminPage() {
           </p>
         </div>
         <FeedbackList feedback={feedback} />
+      </section>
+
+      <section className="flex flex-col gap-4">
+        <div>
+          <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
+            Messages de contact
+          </h2>
+          <p className="mt-1 text-sm text-slate-500">
+            Soumissions du formulaire /contact.
+          </p>
+        </div>
+        <ContactMessagesList messages={contactMessages} />
       </section>
     </div>
   );

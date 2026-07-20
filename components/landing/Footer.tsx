@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Logo } from "@/components/ui/Logo";
 
 export function Footer() {
@@ -13,9 +14,9 @@ export function Footer() {
           <a href="#" className="transition hover:text-slate-900">
             Mentions légales
           </a>
-          <a href="#" className="transition hover:text-slate-900">
+          <Link href="/contact" className="transition hover:text-slate-900">
             Contact
-          </a>
+          </Link>
         </div>
 
         <span className="text-sm text-slate-400">
