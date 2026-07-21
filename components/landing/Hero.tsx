@@ -97,7 +97,7 @@ export function Hero() {
 
           <p className="flex items-center gap-2 text-xs text-violet-500">
             <span aria-hidden="true">🇨🇮</span>
-            Fait pour les étudiants ivoiriens
+            Fait pour les étudiants africains francophones
             <span className="w-1 h-1 rounded-full bg-violet-600 inline-block" aria-hidden="true" />
             Paiement mobile money
           </p>
