@@ -76,7 +76,7 @@ export function Hero() {
 
           <div className="flex flex-wrap items-center gap-4 mb-7">
             <Link
-              href="/signup"
+              href="/onboarding"
               className="inline-flex items-center gap-2 px-6 py-3.5 text-sm font-bold text-white bg-violet-700 rounded-xl transition hover:bg-violet-600 hover:shadow-xl hover:shadow-violet-600/40 hover:-translate-y-0.5"
             >
               Essayer gratuitement

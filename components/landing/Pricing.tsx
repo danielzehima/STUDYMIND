@@ -15,7 +15,7 @@ const PLANS = [
       "Export fiche PDF",
     ],
     cta: "Commencer",
-    href: "/signup",
+    href: "/onboarding",
     highlighted: false,
   },
   {

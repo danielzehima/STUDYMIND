@@ -61,7 +61,7 @@ export function Navbar() {
             Se connecter
           </Link>
           <Link
-            href="/signup"
+            href="/onboarding"
             className="inline-flex items-center gap-2 px-4 py-2 text-sm font-bold text-white bg-violet-700 rounded-lg transition hover:bg-violet-600 hover:shadow-lg hover:shadow-violet-600/30 hover:-translate-y-px"
           >
             Commencer gratuit
@@ -106,7 +106,7 @@ export function Navbar() {
               Se connecter
             </Link>
             <Link
-              href="/signup"
+              href="/onboarding"
               onClick={() => setOpen(false)}
               className="flex items-center justify-center gap-2 px-4 py-2.5 mt-1 text-sm font-bold text-white bg-violet-700 rounded-lg hover:bg-violet-600 transition"
             >
