@@ -16,7 +16,7 @@ export type AdminStats = {
 
 // Prix Pro confirmé (architecture.md §4.2) — sert uniquement à estimer le
 // MRR affiché à l'admin, pas une source de vérité de facturation.
-const PRO_PRICE_FCFA = 3000;
+const PRO_PRICE_FCFA = 5000;
 
 export async function getAdminStats(): Promise<AdminStats> {
   const supabase = createAdminClient();

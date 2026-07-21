@@ -168,7 +168,7 @@ export function Hero() {
 
             {/* Footer pills */}
             <div className="flex gap-2">
-              {["📥 Fiche PDF", "⚡ 3 000 FCFA/mois"].map((pill) => (
+              {["📥 Fiche PDF", "⚡ 5 000 FCFA/mois"].map((pill) => (
                 <div
                   key={pill}
                   className="flex-1 flex items-center justify-center gap-1.5 rounded-lg border border-violet-500/20 py-2 text-xs font-semibold text-violet-300"

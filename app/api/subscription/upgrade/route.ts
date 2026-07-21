@@ -4,8 +4,8 @@ import { createPayment, GeniusPayError } from "@/lib/geniuspay/client";
 import { createPaymentAttempt } from "@/lib/payments/repository";
 
 const PRICING = {
-  monthly: { amount: 3000, label: "1 mois" },
-  quarterly: { amount: 7500, label: "1 trimestre" },
+  monthly: { amount: 5000, label: "1 mois" },
+  quarterly: { amount: 12000, label: "1 trimestre" },
 } as const;
 
 type Period = keyof typeof PRICING;

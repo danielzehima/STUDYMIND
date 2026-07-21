@@ -53,7 +53,7 @@ async function handlePaymentSuccess(reference: string, fallbackUserId?: string) 
   }
 
   const period = attempt?.period ?? "monthly";
-  const amount = attempt?.amount ?? (period === "quarterly" ? 7500 : 3000);
+  const amount = attempt?.amount ?? (period === "quarterly" ? 12000 : 5000);
 
   await activateProFromPayment(userId, {
     reference,

@@ -70,7 +70,7 @@ export default async function AdminPage() {
             icon={Wallet}
             label="MRR estimé"
             value={`${stats.estimatedMrrFcfa.toLocaleString("fr-FR")} FCFA`}
-            hint="Basé sur 3 000 FCFA/mois par compte Pro"
+            hint="Basé sur 5 000 FCFA/mois par compte Pro"
           />
         </div>
       </section>

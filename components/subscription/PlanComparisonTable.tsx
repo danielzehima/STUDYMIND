@@ -150,7 +150,7 @@ export function PlanComparisonTable({
           </div>
           <div className="mt-4 flex items-baseline gap-1">
             <span className="text-3xl font-bold text-slate-900">
-              {period === "monthly" ? "3 000 FCFA" : "7 500 FCFA"}
+              {period === "monthly" ? "5 000 FCFA" : "12 000 FCFA"}
             </span>
             <span className="text-slate-500">
               {period === "monthly" ? "/mois" : "/trimestre"}

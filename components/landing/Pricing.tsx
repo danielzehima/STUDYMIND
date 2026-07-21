@@ -20,7 +20,7 @@ const PLANS = [
   },
   {
     name: "Pro",
-    price: "3 000 FCFA",
+    price: "5 000 FCFA",
     period: "/mois",
     description:
       "Pour les étudiants qui veulent réviser sans limites, examens compris.",
@@ -133,7 +133,7 @@ export function Pricing() {
         </div>
 
         <p className="mt-10 text-center text-xs text-violet-500">
-          Option trimestrielle disponible : 7 500 FCFA / trimestre (≈ 2 500 FCFA/mois).
+          Option trimestrielle disponible : 12 000 FCFA / trimestre (≈ 4 000 FCFA/mois).
         </p>
       </div>
     </section>
